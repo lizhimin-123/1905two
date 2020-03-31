@@ -44,8 +44,9 @@ class LoginController extends Controller
             echo "<script>alert('密码不一致');location='/login/register'</script>";
         }
 //        dd($data);
-        $dat=md5($data['password']);
-        $res=insert(['name'=>$data['name'],'passwoed'=>$dat]);
+        $data['password']=md5($data['password']);
+//        dd($data);
+        $res=RegisterModel::insert($data);
         if ($res){
             echo "<script>alert('注册成功');location='/login/login'</script>";
         }else{
